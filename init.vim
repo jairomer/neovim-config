@@ -20,6 +20,13 @@ if !&sidescrolloff
 endif
 set nostartofline       " Do not jump to first character with page commands.
 
+" Pane navigation
+map <C-> <C-W>j
+map <C-> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+
 " Tell Vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!
 if &listchars ==# 'eol:$'
@@ -33,5 +40,6 @@ match ExtraWhitespace /\s\+$\|\t/
 
 " Pathogen Plugin Manager
 execute pathogen#infect()
+
 filetype plugin indent on
 
