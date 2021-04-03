@@ -10,16 +10,16 @@ After having VSCode consume 15Gb of RAM for working with a C++ project, I had to
 I need control of my tools to have control ver the quality of my work as a professional software developer.
 
 **Advantages**
-- Open-source
-- Battle tested
-- Highly customizable
-- Well documented
+- Open-source.
+- Battle tested.
+- Highly customizable.
+- Well documented.
 - Amazing community.
 - I already use in a day to day basis.
-- Lightweight
+- Lightweight.
 
 **Disadvantages**
-- Difficult to learn at first
+- Difficult to learn at first.
 - No magic, you get what you put on it.
 - Requires understanding the whole development process.
 
