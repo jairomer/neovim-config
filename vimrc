@@ -44,5 +44,5 @@ execute pathogen#infect()
 filetype plugin indent on
 
 " Execute NERDTree pane on startup
-NERDTree
+execute NERDTree
 
