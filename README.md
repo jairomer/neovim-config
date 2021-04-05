@@ -50,3 +50,17 @@ Then, you might want to install the YouCompleteMe to have autocompletion on seve
 `cd $HOME/.config/nvim && python bundle/YouCompleteMe/install.py`
 
 There are several ways of installing this plugin that can be checked out at the [README of YouCompleteMe](https://github.com/ycm-core/YouCompleteMe/tree/ed423e8a1d2a5842a126d33b824ad3b65f85f3ba#readme).
+
+### C++ Autocomplete and linting
+
+It is needed to configure each C++ project in order for autocomplete to work with c++17 and beyond.
+YouCompleteMe uses clangd as backend for the implementation of the language server.
+This means that if further flags are needed, they must be explictly defined on a custom `.ycm_extra_conf.py` such as the following:
+
+```python
+def Settings( **kwargs ):
+  return {
+    'flags': [ '-x', 'c++', '-Wall', '-Wextra', '-Werror', '-std=c++17' ],
+  }
+```
+
