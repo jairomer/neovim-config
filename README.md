@@ -47,11 +47,12 @@ git clone https://github.com/jairomer/neovim-config.git $HOME/.config/nvim && \
 
 Then, you might want to install the YouCompleteMe to have autocompletion on several programming languages:
 
-`cd $HOME/.config/nvim && python bundle/YouCompleteMe/install.py`
+`cd $HOME/.config/nvim && python3 -m pip install --user --upgrade pynvim && python bundle/YouCompleteMe/install.py`
 
 There are several ways of installing this plugin that can be checked out at the [README of YouCompleteMe](https://github.com/ycm-core/YouCompleteMe/tree/ed423e8a1d2a5842a126d33b824ad3b65f85f3ba#readme).
 
-### C++ Autocomplete and linting
+
+## C++ Autocomplete and linting
 
 It is needed to configure each C++ project in order for autocomplete to work with c++17 and beyond.
 YouCompleteMe uses clangd as backend for the implementation of the language server.
@@ -64,3 +65,6 @@ def Settings( **kwargs ):
   }
 ```
 
+### Semantic completion and static analysis
+
+Install and configure the latest versions for libclang and clang-tidy for your current distribution.
