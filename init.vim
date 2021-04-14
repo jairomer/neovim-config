@@ -3,8 +3,8 @@ set showmatch           " Show matching brackets.
 set number              " Show the line numbers on the left side.
 set formatoptions+=o    " Continue comment marker in new lines.
 set expandtab           " Insert spaces when TAB is pressed.
-set tabstop=4           " Render TABs using this many spaces.
-set shiftwidth=4        " Indentation amount for < and > commands.
+set tabstop=2           " Render TABs using this many spaces.
+set shiftwidth=2        " Indentation amount for < and > commands.
 
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 
@@ -54,3 +54,8 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " END of NERDTree configuration
 
+
+" START YouCompleteMe config
+let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
+
+" END of YouCompleteMe config
