@@ -59,9 +59,36 @@ YouCompleteMe uses clangd as backend for the implementation of the language serv
 This means that if further flags are needed, they must be explictly defined on a custom `.ycm_extra_conf.py` such as the following:
 
 ```python
+import os
+import os.path
+import fnmatch
+import logging
+import ycm_core
+import re
+
+
+def getIncludesUnder(father):
+    return [str("-I"+x[0]) for x in os.walk(father)]
+
 def Settings( **kwargs ):
+  BASE_FLAGS = [
+          '-Wall',
+          '-Wextra',
+          '-Werror',
+          '-Wno-long-long',
+          '-Wno-variadic-macros',
+          '-fexceptions',
+          '-ferror-limit=10000',
+          '-DNDEBUG',
+          '-std=c++20',
+          '-xc++',
+          '-I/usr/lib/',
+          '-I/usr/include/',
+          ]
+  BASE_FLAGS += getIncludesUnder(os.getcwd()+"/src")
+  BASE_FLAGS += getIncludesUnder(os.getcwd()+"/3pp")
   return {
-    'flags': [ '-x', 'c++', '-Wall', '-Wextra', '-Werror', '-std=c++17' ],
+    'flags': BASE_FLAGS,
   }
 ```
 
