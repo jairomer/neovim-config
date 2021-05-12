@@ -95,3 +95,18 @@ def Settings( **kwargs ):
 ### Semantic completion and static analysis
 
 Install and configure the latest versions for libclang and clang-tidy for your current distribution.
+
+### Tmux
+
+Tmux is a teminal multiplexer that enables multitasking on your workflow.
+
+It also provides a way of keeping several terminals active on remote servers, which is very useful when SHTF and the internet connection fails.
+
+
+Tmux can be downloaded and compiled from (here)[https://github.com/tmux/tmux].
+
+To setup the tmux configuration file:
+```
+cp tmux.conf ~/.tmux.conf
+```
+
