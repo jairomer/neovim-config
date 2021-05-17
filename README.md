@@ -110,3 +110,8 @@ To setup the tmux configuration file:
 cp tmux.conf ~/.tmux.conf
 ```
 
+## PlantUML configuration
+
+I followed [this tutorial](https://jekhokie.github.io/linux/vim/plantuml/2020/07/25/plantuml-using-vim.html).
+
+Now you can use `Plantuml*` commands inside vim.

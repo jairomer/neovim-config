@@ -16,3 +16,12 @@
 [submodule "bundle/vim-refactor"]
 	path = bundle/vim-refactor
 	url = https://github.com/LucHermitte/vim-refactor.git
+[submodule "bundle/plantuml-syntax"]
+	path = bundle/plantuml-syntax
+	url = https://github.com/aklt/plantuml-syntax
+[submodule "bundle/open-browser.vim"]
+	path = bundle/open-browser.vim
+	url = https://github.com/tyru/open-browser.vim.git
+[submodule "bundle/plantuml-previewer.vim"]
+	path = bundle/plantuml-previewer.vim
+	url = https://github.com/weirongxu/plantuml-previewer.vim.git
