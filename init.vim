@@ -5,6 +5,7 @@ set formatoptions+=o    " Continue comment marker in new lines.
 set expandtab           " Insert spaces when TAB is pressed.
 set tabstop=2           " Render TABs using this many spaces.
 set shiftwidth=2        " Indentation amount for < and > commands.
+set clipboard+=unnamedplus "Use system clipboard.
 
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 
