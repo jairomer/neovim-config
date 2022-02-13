@@ -27,6 +27,8 @@ map <C-> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Natural exiting for terminal mode
+:tnoremap <Esc> <C-\><C-n>
 
 " Tell Vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!

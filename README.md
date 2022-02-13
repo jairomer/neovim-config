@@ -34,7 +34,7 @@ The one liner to install the latest stable drop:
 ```
 wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && \
     chmod u+x nvim.appimage && \
-    sudo mv nvim.appimage /usr/bin/vim`
+    sudo mv nvim.appimage /usr/bin/vim
 ```
 
 The next step is to clone this repository at `$HOME/.config/nvim`:
@@ -99,9 +99,7 @@ Install and configure the latest versions for libclang and clang-tidy for your c
 ### Tmux
 
 Tmux is a teminal multiplexer that enables multitasking on your workflow.
-
-It also provides a way of keeping several terminals active on remote servers, which is very useful when SHTF and the internet connection fails.
-
+It also provides a way of keeping several terminals active on remote servers, which is very useful when the internet connection fails.
 
 Tmux can be downloaded and compiled from (here)[https://github.com/tmux/tmux].
 
