@@ -96,6 +96,12 @@ def Settings( **kwargs ):
 
 Install and configure the latest versions for libclang and clang-tidy for your current distribution.
 
+### Enclosing of parenthesis, brackets, etc
+
+For this I simply use delimitMate.
+
+To enable it, we need to execute `make all` and `make install`.
+
 ### Tmux
 
 Tmux is a teminal multiplexer that enables multitasking on your workflow.
@@ -113,3 +119,4 @@ cp tmux.conf ~/.tmux.conf
 I followed [this tutorial](https://jekhokie.github.io/linux/vim/plantuml/2020/07/25/plantuml-using-vim.html).
 
 Now you can use `Plantuml*` commands inside vim.
+

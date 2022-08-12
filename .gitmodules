@@ -25,3 +25,6 @@
 [submodule "bundle/plantuml-previewer.vim"]
 	path = bundle/plantuml-previewer.vim
 	url = https://github.com/weirongxu/plantuml-previewer.vim.git
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate
