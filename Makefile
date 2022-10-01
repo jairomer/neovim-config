@@ -16,12 +16,12 @@ install:
 docker:
 	docker build -t nvim ./docker --build-arg USER=`id -u` --build-arg GROUP=`id -g`
 
-run: 
-	docker run -it \
-            --rm \
-            --name ovim \
-            --cap-add SYS_ADMIN \
-            --device /dev/fuse \
-            -v `pwd`:/home/`id -u`/Workspace:rw,shared,consistent \
-            --user `id -u` \
-            nvim:latest vim
+#run: 
+#	docker run -it \
+#            --rm \
+#            --name ovim \
+#            --cap-add SYS_ADMIN \
+#            --device /dev/fuse \
+#            -v `pwd`:/home/`id -u`/Workspace:rw,shared,consistent \
+#            --user `id -u` \
+#            nvim:latest vim
