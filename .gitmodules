@@ -28,3 +28,9 @@
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate
+[submodule "bundle/vim-lsc"]
+	path = bundle/vim-lsc
+	url = https://github.com/natebosch/vim-lsc.git
+[submodule "bundle/vim-lsc-dart"]
+	path = bundle/vim-lsc-dart
+	url = https://github.com/natebosch/vim-lsc-dart.git
