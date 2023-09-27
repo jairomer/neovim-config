@@ -34,3 +34,9 @@
 [submodule "bundle/vim-lsc-dart"]
 	path = bundle/vim-lsc-dart
 	url = https://github.com/natebosch/vim-lsc-dart.git
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "bundle/telescope.nvim.git"]
+	path = bundle/telescope.nvim.git
+	url = https://github.com/nvim-telescope/telescope.nvim.git
