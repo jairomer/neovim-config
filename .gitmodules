@@ -40,3 +40,9 @@
 [submodule "bundle/telescope.nvim.git"]
 	path = bundle/telescope.nvim.git
 	url = https://github.com/nvim-telescope/telescope.nvim.git
+[submodule "bundle/plenary"]
+	path = bundle/plenary
+	url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "bundle/nvim-treesitter"]
+	path = bundle/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
