@@ -9,6 +9,7 @@ set clipboard+=unnamedplus "Use system clipboard.
 
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 
+
 " More natural splits
 set splitbelow          " Horizontal split below current.
 set splitright          " Vertical split to right of current.
@@ -57,6 +58,11 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " END of NERDTree configuration
 
+" Find files using Telescope command-line sugar.
+nnoremap ff <cmd>:Telescope find_files<cr>
+nnoremap fg <cmd>:Telescope live_grep<cr>
+nnoremap fb <cmd>:Telescope buffers<cr>
+nnoremap fh <cmd>:Telescope help_tags<cr>
 
 " START YouCompleteMe config
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
