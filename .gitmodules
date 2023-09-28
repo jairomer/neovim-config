@@ -46,3 +46,9 @@
 [submodule "bundle/nvim-treesitter"]
 	path = bundle/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "bundle/go.nvim"]
+	path = bundle/go.nvim
+	url = https://github.com/ray-x/go.nvim.git
+[submodule "bundle/nvim-lspconfig"]
+	path = bundle/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
