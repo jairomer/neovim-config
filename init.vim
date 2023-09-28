@@ -9,7 +9,6 @@ set clipboard+=unnamedplus "Use system clipboard.
 
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 
-
 " More natural splits
 set splitbelow          " Horizontal split below current.
 set splitright          " Vertical split to right of current.
@@ -68,3 +67,6 @@ nnoremap fh <cmd>:Telescope help_tags<cr>
 let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
 
 " END of YouCompleteMe config
+
+" lua require 'nvim-treesitter.configs'.setup{highlight={enable=true}}  " At the bottom of your init.vim, keep all configs on one line
+lua require'nvim-treesitter.configs'.setup {highlight = { enable = true }, }
