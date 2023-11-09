@@ -52,3 +52,6 @@
 [submodule "bundle/nvim-lspconfig"]
 	path = bundle/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "bundle/coc.nvim"]
+	path = bundle/coc.nvim
+	url = git@github.com:neoclide/coc.nvim.git
