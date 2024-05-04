@@ -12,6 +12,6 @@ return require('packer').startup(function(use)
 	}
     use 'williamboman/mason.nvim'
     use 'hrsh7th/nvim-cmp'
-    use 'petertriho/cmp-git'
+    use 'ms-jpq/coq_nvim'
 end)
 

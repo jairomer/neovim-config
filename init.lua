@@ -14,6 +14,9 @@ vim.o.softtabstop = 4
 -- Number of spaces inserted when indenting
 vim.o.shiftwidth = 4
 
+-- Set system clipboard
+vim.opt.clipboard= 'unnamedplus'
+
 require('plugins')
 
 -- disable netrw at the very start of your init.lua
