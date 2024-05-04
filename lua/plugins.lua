@@ -13,5 +13,7 @@ return require('packer').startup(function(use)
     use 'williamboman/mason.nvim'
     use 'hrsh7th/nvim-cmp'
     use 'ms-jpq/coq_nvim'
+    use 'lewis6991/gitsigns.nvim' 
+    use 'romgrk/barbar.nvim'
 end)
 

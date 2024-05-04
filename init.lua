@@ -78,61 +78,48 @@ require('mason').setup({
     }
 })
 
--- local cmp = require'cmp'
---   cmp.setup({
---     snippet = {
---       expand = function(args)
---           vim.snippet.expand(args.body)
---  --       require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
---       end,
---     },
---     window = {
---       completion = cmp.config.window.bordered(),
---       documentation = cmp.config.window.bordered(),
---     },
---     mapping = cmp.mapping.preset.insert({
---       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
---       ['<C-f>'] = cmp.mapping.scroll_docs(4),
---       ['<C-Space>'] = cmp.mapping.complete(),
---       ['<C-e>'] = cmp.mapping.abort(),
---       -- Accept currently selected item.
---       -- Set `select` to `false` to only confirm explicitly selected items.
---       ['<CR>'] = cmp.mapping.confirm({ select = true }), 
---     }),
---     sources = cmp.config.sources({
---       { name = 'nvim_lsp' },
---       -- For luasnip users.
--- --      { name = 'luasnip' }, 
---     }, {
---       { name = 'buffer' },
---     })
---   })
--- 
---   -- Set configuration for specific filetype.
---   cmp.setup.filetype('gitcommit', {
---     sources = cmp.config.sources({
---       { name = 'git' }, 
---     }, {
---       { name = 'buffer' },
---     })
---   })
--- 
---   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
---   cmp.setup.cmdline({ '/', '?' }, {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = {
---       { name = 'buffer' }
---     }
---   })
--- 
---   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---   cmp.setup.cmdline(':', {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = cmp.config.sources({
---       { name = 'path' }
---     }, {
---       { name = 'cmdline' }
---     }),
---     matching = { disallow_symbol_nonprefix_matching = false }
---   })
+-- BarBar
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+-- Re-order to previous/next
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+-- Goto buffer in position...
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+-- Pin/unpin buffer
+map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+-- Close buffer
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+-- Sort automatically by...
+map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
+map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', opts)
+map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
+map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
+map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+-- Other:
+-- :BarbarEnable - enables barbar (enabled by default)
+-- :BarbarDisable - very bad command, should never be used
 
