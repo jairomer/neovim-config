@@ -16,7 +16,7 @@ return require('packer').startup(function(use)
     }
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
-    use 'lewis6991/gitsigns.nvim' 
+    use 'lewis6991/gitsigns.nvim'
     use 'romgrk/barbar.nvim'
     --  nvim-cmp
     use 'neovim/nvim-lspconfig'
@@ -28,12 +28,12 @@ return require('packer').startup(function(use)
     -- Snippet engine
     use({
 	"L3MON4D3/LuaSnip",
-	tag = "v2.3.0", 
+	tag = "v2.3.0",
 	run = "make install_jsregexp"
     })
     use 'saadparwaiz1/cmp_luasnip'
     use 'mfussenegger/nvim-fzy'
-    use { 
+    use {
         'tzachar/fuzzy.nvim',
         requires = {'nvim-telescope/telescope-fzf-native.nvim'}
     }
@@ -43,6 +43,13 @@ return require('packer').startup(function(use)
             'hrsh7th/nvim-cmp',
             'tzachar/fuzzy.nvim'
         }
+    }
+    -- theme
+    use {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
     }
 end)
 

@@ -29,6 +29,45 @@ vim.opt.termguicolors = true
 -- set the Leader Key
 vim.g.mapleader = ' '
 
+-- set theme ---------------------------------------
+require('tokyonight').setup({
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+    light_style = "day", -- The theme is used when the background is set to light
+    transparent = false, -- Enable this to disable setting the background color
+    terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+    styles = {
+      -- Style to be applied to different syntax groups
+      -- Value is any valid attr-list value for `:help nvim_set_hl`
+      comments = { italic = true },
+      keywords = { italic = true },
+      functions = {},
+      variables = {},
+      -- Background styles. Can be "dark", "transparent" or "normal"
+      sidebars = "dark", -- style for sidebars, see below
+      floats = "dark", -- style for floating windows
+    },
+    sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+    day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+    hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+    dim_inactive = false, -- dims inactive windows
+    lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
+    
+    --- You can override specific color groups to use other groups or a hex color
+    --- function will be called with a ColorScheme table
+    ---@param colors ColorScheme
+    on_colors = function(colors) end,
+    
+    --- You can override specific highlights to use other groups or a hex color
+    --- function will be called with a Highlights and ColorScheme table
+    ---@param highlights Highlights
+    ---@param colors ColorScheme
+    on_highlights = function(highlights, colors) end,
+})
+
+vim.cmd[[colorscheme tokyonight]]
+
 -- set keymap for telescope -------------------------
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
@@ -44,21 +83,17 @@ vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 local function my_on_attach(bufnr)
     -- configure nvim-tree
     local api = require "nvim-tree.api"
-    
     local function opts(desc)
       return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
     end
-    
     api.filters = {
           dotfiles = false,
           git_clean = false,
           no_buffer = false,
           custom = {}
       }
-    
     -- default mappings
     api.config.mappings.default_on_attach(bufnr)
-    
     -- custom mappings
     vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
     vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
@@ -68,34 +103,6 @@ end
 require("nvim-tree").setup({
 	on_attach = my_on_attach
 })
-
--- Mason -----------------------------------------
-
-require('mason').setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
--- We want this to automate LSP installation.
-require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
-    end,
-    -- Next, you can provide a dedicated handler for specific servers.
-    -- For example, a handler override for the `rust_analyzer`:
-    --["rust_analyzer"] = function ()
-    --    require("rust-tools").setup {}
-    --end
-}
 
 -- BarBar -----------------------------------------
 local map = vim.api.nvim_set_keymap
@@ -231,4 +238,53 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --  capabilities = capabilities
 --}
 
+-- Mason -----------------------------------------
+
+require('mason').setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+-- We want this to automate LSP installation.
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {
+            capabilities = capabilities
+        }
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    --["rust_analyzer"] = function ()
+    --    require("rust-tools").setup {}
+    --end
+    -- ["pyright"] = function ()
+    --     require("pyright").setup {
+    --         capabilities = capabilities,
+    --         on_attach = my_on_attach,
+    --         settings = {
+    --             pyright = {
+    --                 autoImportCompletion = true
+    --             },
+    --             python = {
+    --                 analysis = {
+    --                     autoSearchPaths = true,
+    --                     diagnosticMode = 'openFilesOnly',
+    --                     useLibraryCodeForTypes = true,
+    --                     typeCheckingMode = 'on'
+    --                 }
+    --             }
+    --         }
+
+    --     }
+    -- end
+}
 
