@@ -29,15 +29,17 @@ vim.opt.termguicolors = true
 -- set the Leader Key
 vim.g.mapleader = ' '
 
--- set keymap for nvim-tree
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
-
--- set keymap for telescope
+-- set keymap for telescope -------------------------
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
+
+-- nvim-tree -----------------------------------------
+
+-- set keymap for nvim-tree
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 
 local function my_on_attach(bufnr)
     -- configure nvim-tree
@@ -62,11 +64,12 @@ local function my_on_attach(bufnr)
     vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
 end
 
-
 -- empty setup using defaults
 require("nvim-tree").setup({
 	on_attach = my_on_attach
 })
+
+-- Mason -----------------------------------------
 
 require('mason').setup({
     ui = {
@@ -78,7 +81,9 @@ require('mason').setup({
     }
 })
 
--- BarBar
+require("mason-lspconfig").setup()
+
+-- BarBar -----------------------------------------
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -122,4 +127,94 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
+
+-- Configure LuaSnip -----------------------------------------
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
+-- Configure fzy buffer --------------------------------------
+
+local fzy = require('fzy')
+fzy.command = '/usr/bin/fzy'
+
+-- Configure Nvim-Cmp -----------------------------------------
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- require('snippy').expand_snet(args.body) -- For `snippy` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<TAB>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  -- Sources: https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  },
+  {
+    { name = 'buffer' },
+    { name = 'fuzzy_buffer' },
+    { name = 'nvim_lsp' },
+  })
+})
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false }
+})
+
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+--require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--  capabilities = capabilities
+--}
+
 
