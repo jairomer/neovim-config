@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
     use 'lewis6991/gitsigns.nvim'
-    use 'romgrk/barbar.nvim'
+    -- use 'romgrk/barbar.nvim'
     --  nvim-cmp
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/cmp-nvim-lsp'
@@ -51,5 +51,15 @@ return require('packer').startup(function(use)
       priority = 1000,
       opts = {},
     }
+    -- PlatformIO
+    use {
+        'anurag3301/nvim-platformio.lua',
+        requires = {
+            {'akinsho/nvim-toggleterm.lua'},
+            {'nvim-telescope/telescope.nvim'},
+            {'nvim-lua/plenary.nvim'},
+        }
+    }
+
 end)
 
