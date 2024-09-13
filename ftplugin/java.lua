@@ -5,7 +5,7 @@ local styles_home = home .. '.config/nvim/styles/'
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
-local root_markers = {'gradlew', 'mvnw', '.git'}
+local root_markers = {'gradlew', 'mvnw', '.git', 'WORKSPACE'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
 -- eclipse.jdt.ls stores project specific data within a folder. If you are working
@@ -72,7 +72,7 @@ local config = {
         },
       },
       signatureHelp = { enabled = true },
-      contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
+      contentProvider = { preferred = 'eclipse-jd' },  -- to decompile library code
       -- Specify any completion options
       completion = {
         favoriteStaticMembers = {
@@ -114,11 +114,19 @@ local config = {
       -- And search for `interface RuntimeOption`
       -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
       configuration = {
-        runtimes = {
-	  {
-		name = "JavaSE-22",
-		path = home .. ".java/runtimes/jdk-22.0.1"
-	  },
+        runtimes = { -- jdk-17.0.0.1  jdk-20  jdk-22.0.1
+	        {
+	          name = "JavaSE-22",
+	          path = home .. ".java/runtimes/jdk-22.0.1"
+	        },
+	        {
+	          name = "JavaSE-20",
+	          path = home .. ".java/runtimes/jdk-20"
+	        },
+	        {
+	          name = "JavaSE-17",
+	          path = home .. ".java/runtimes/jdk-17.0.0.1"
+	        },
         }
       }
     }
@@ -129,7 +137,7 @@ local config = {
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   -- for the full list of options
   cmd = {
-    home .. ".java/runtimes/jdk-22.0.1/bin/java",
+    home .. ".java/runtimes/jdk-20/bin/java",
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -148,7 +156,7 @@ local config = {
 
     -- The configuration for jdtls is also placed where jdtls was installed. This will
     -- need to be updated depending on your environment
-    '-configuration', jdtls_home .. '/config_mac',
+    '-configuration', jdtls_home .. '/config_linux',
 
     -- Use the workspace_folder defined above to store data for this project
     '-data', workspace_folder,
