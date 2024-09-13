@@ -106,6 +106,18 @@ end
 
 -- empty setup using defaults
 require("nvim-tree").setup({
+    disable_netrw = true,
+    view = {
+        adaptive_size = true,
+        float = {
+            enable = false,
+        },
+        actions = {
+            open_file = {
+                quit_on_open = true,
+            }
+        },
+    },
 	on_attach = my_on_attach
 })
 
