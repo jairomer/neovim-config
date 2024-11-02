@@ -113,12 +113,12 @@ require("nvim-tree").setup({
             enable = false,
         },
     },
-    on_attach = my_on_attach,
     actions = {
         open_file = {
             quit_on_open = true,
         }
     },
+    on_attach = my_on_attach,
 })
 
 -- BarBar -----------------------------------------
