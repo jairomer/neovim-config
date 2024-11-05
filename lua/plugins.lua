@@ -67,5 +67,9 @@ return require('packer').startup(function(use)
         require("inc_rename").setup()
       end,
     }
+    -- PlantUML support
+    use 'javiorfo/nvim-soil'
+    -- Optional for puml syntax highlighting:
+    use 'javiorfo/nvim-nyctophilia'
 end)
 
