@@ -22,7 +22,7 @@ vim.wo.relativenumber = true;
 -- Set system clipboard
 vim.opt.clipboard="unnamedplus"
 
-require('plugins')
+-- require('plugins')
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -179,8 +179,8 @@ end, {silent = true})
 
 -- Configure fzy buffer --------------------------------------
 
-local fzy = require('fzy')
-fzy.command = '/usr/bin/fzy'
+-- local fzy = require('fzy')
+-- fzy.command = '/usr/bin/fzy'
 
 -- Configure Nvim-Cmp -----------------------------------------
 local cmp = require'cmp'
@@ -209,14 +209,14 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     -- { name = 'vsnip' }, -- For vsnip users.
-    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   },
   {
-    { name = 'buffer' },
-    { name = 'fuzzy_buffer' },
-    { name = 'nvim_lsp' },
+    -- { name = 'buffer' },
+    -- { name = 'fuzzy_buffer' },
+    -- { name = 'nvim_lsp' },
   })
 })
 
@@ -247,83 +247,4 @@ cmp.setup.cmdline(':', {
   }),
   matching = { disallow_symbol_nonprefix_matching = false }
 })
-
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---  capabilities = capabilities
---}
-
--- Mason -----------------------------------------
-
-require('mason').setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
--- We want this to automate LSP installation.
-require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {
-            capabilities = capabilities
-        }
-    end,
-    -- Next, you can provide a dedicated handler for specific servers.
-    -- For example, a handler override for the `rust_analyzer`:
-    --["rust_analyzer"] = function ()
-    --    require("rust-tools").setup {}
-    --end
-    -- ["pyright"] = function ()
-    --     require("pyright").setup {
-    --         capabilities = capabilities,
-    --         on_attach = my_on_attach,
-    --         settings = {
-    --             pyright = {
-    --                 autoImportCompletion = true
-    --             },
-    --             python = {
-    --                 analysis = {
-    --                     autoSearchPaths = true,
-    --                     diagnosticMode = 'openFilesOnly',
-    --                     useLibraryCodeForTypes = true,
-    --                     typeCheckingMode = 'on'
-    --                 }
-    --             }
-    --         }
-
-    --     }
-    -- end
-}
-
--- Rename a variable in the current scope.
-require("inc_rename").setup {
- -- the name of the command
-  cmd_name = "IncRename",
-   -- the highlight group used for highlighting the identifier's new name
-  hl_group = "Substitute",
-   -- whether an empty new name should be previewed; if false the command preview will be cancelled instead
-  preview_empty_name = false,
-   -- whether to display a `Renamed m instances in n files` message after a rename operation
-  show_message = true,
-   -- whether to save the "IncRename" command in the commandline history (set to false to prevent issues with
-   -- navigating to older entries that may arise due to the behavior of command preview)
-  save_in_cmdline_history = true,
-   -- the type of the external input buffer to use (the only supported value is currently "dressing")
-  input_buffer_type = nil,
-   -- callback to run after renaming, receives the result table (from LSP handler) as an argument
-  post_hook = function (result_table)
-      vim.cmd('wall')
-  end,
-}
-
 
